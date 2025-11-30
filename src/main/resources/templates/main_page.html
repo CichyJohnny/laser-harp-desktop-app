@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laser Harp</title>
+
+    <link rel="stylesheet" th:href="@{/css/main_page.css}">
+</head>
+<body>
+
+<h1>🎵 Laser Harp Teaching Mode 🎵</h1>
+
+<div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="🔍 Search by song title..." onkeyup="filterTracks()">
+</div>
+
+<div class="track-list">
+    <div class="track-card" th:each="track : ${tracks}">
+
+        <div class="card-header">
+            <img th:src="${track.imageUrl}" class="track-img">
+
+            <div class="track-info">
+                <h3 class="track-title" th:text="${track.title}">Song Title</h3>
+                <p class="track-artist" th:text="${track.artist}">Artist</p>
+            </div>
+
+            <div class="track-actions">
+                <button class="btn-preview"
+                        th:if="${track.audioUrl != ''}"
+                        th:id="'btn-preview-' + ${track.id}"
+                        th:data-id="${track.id}"
+                        th:data-url="${track.audioUrl}"
+                        onclick="togglePreview(this)">
+                    <span>▶ Preview</span>
+                </button>
+
+                <button class="btn-play"
+                        th:data-id="${track.id}"
+                        th:data-title="${track.title}"
+                        onclick="sendToEsp(this.getAttribute('data-id'), this.getAttribute('data-title'))">
+                    📡 Play
+                </button>
+            </div>
+        </div>
+
+        <div th:id="'sheet-' + ${track.id}" class="sheet-music-container">
+            <img th:src="${track.sheetMusicUrl}" class="sheet-img" alt="Sheet Music">
+        </div>
+
+    </div>
+</div>
+
+<audio id="audio-player"></audio>
+<div id="status-bar">Status message...</div>
+
+<script th:src="@{/js/main_page.js}"></script>
+</body>
+</html>
