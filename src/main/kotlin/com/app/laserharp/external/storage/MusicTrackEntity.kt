@@ -3,15 +3,13 @@ package com.app.laserharp.external.storage
 import com.app.laserharp.domain.MusicTrack
 import com.app.laserharp.external.storage.MusicTrackEntity.Companion.TABLE_NAME
 import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 
 @Entity
 @Table(name = TABLE_NAME)
 data class MusicTrackEntity(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int? = null,
+    @Id val id: Int? = null,
     val title: String,
     val artist: String,
     val imageUrl: String,

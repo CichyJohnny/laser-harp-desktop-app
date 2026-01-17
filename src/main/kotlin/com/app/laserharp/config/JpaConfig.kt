@@ -1,8 +1,7 @@
 package com.app.laserharp.config
 
 import com.app.laserharp.domain.MusicTrack
-import com.app.laserharp.external.storage.MusicTrackEntity
-import com.app.laserharp.external.storage.MusicTrackRepository
+import com.app.laserharp.domain.MusicTrackRepository
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -82,7 +81,7 @@ class JpaConfig {
                         emptyList(),
                     ),
                 )
-            repository.saveAll(musicTracks.map { MusicTrackEntity.from(it) })
+            repository.saveAll(musicTracks)
         }
     }
 }
