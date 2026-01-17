@@ -52,9 +52,9 @@ class JpaConfig {
                     MusicTrack(
                         5,
                         "Głowa ramiona kolana pięty",
-                        "System",
+                        "Magda Bogdanowicz",
                         "/img/glowa-ramiona-kolana-piety_cover.png",
-                        "",
+                        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
                         "/img/glowa-ramiona-kolana-piety_sheet.jpg",
                         listOf("G", "G", "C", "H", "A", "G", "G", "G", "E", "G"),
                     ),
