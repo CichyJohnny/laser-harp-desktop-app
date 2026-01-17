@@ -1,5 +1,5 @@
 const audioPlayer = document.getElementById('audio-player');
-let currentPlayingId = null; // Tracks which song ID is currently previewing
+let currentPlayingId = null;
 
 function togglePreview(btn) {
     const id = btn.getAttribute('data-id');
@@ -13,33 +13,27 @@ function togglePreview(btn) {
     }
 
     if (currentPlayingId !== null) {
-        stopBrowserAudio(); // Reset UI of previous song
+        stopBrowserAudio();
     }
 
     sheetContainer.style.display = 'block';
 
-    // 2. Play Audio
     audioPlayer.src = url;
     audioPlayer.play();
 
-    // 3. Update Button UI
     btn.classList.add('playing');
-    btnSpan.innerText = "⏹ Stop Preview";
+    btnSpan.innerText = "Stop Preview";
 
-    // 4. Update Global State
     currentPlayingId = id;
 }
 
 function stopBrowserAudio() {
-    // Pause Audio
     audioPlayer.pause();
     audioPlayer.currentTime = 0;
 
     if (currentPlayingId) {
-        // Hide Sheet Music
         document.getElementById('sheet-' + currentPlayingId).style.display = 'none';
 
-        // Reset Button UI
         const prevBtn = document.getElementById('btn-preview-' + currentPlayingId);
         if (prevBtn) {
             prevBtn.classList.remove('playing');
@@ -66,12 +60,10 @@ function showStatus(msg) {
     setTimeout(() => { el.style.opacity = "0"; }, 3000);
 }
 
-// Helper: When audio finishes naturally, reset UI
 audioPlayer.onended = function() {
     stopBrowserAudio();
 }
 
-// --- 3. Search Functionality ---
 function filterTracks() {
     const input = document.getElementById('searchInput');
     const filter = input.value.toLowerCase();
