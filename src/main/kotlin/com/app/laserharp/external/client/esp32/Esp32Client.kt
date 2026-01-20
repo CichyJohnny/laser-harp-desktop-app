@@ -25,7 +25,7 @@ class Esp32Client() : DisposableBean {
             setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, READ_TIMEOUT_MS, WRITE_TIMEOUT_MS)
 
             if (!openPort()) {
-                throw IllegalStateException("Failed to open serial port '$SERIAL_PORT_NAME'")
+//                throw IllegalStateException("Failed to open serial port '$SERIAL_PORT_NAME'")
             }
             logger.info("Opened ESP32 serial port: {} at {} baud", systemPortName, baudRate)
         }
